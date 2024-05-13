@@ -1,0 +1,74 @@
+<%= form_with(model: entry, class: "contents") do |form| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+        <% entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :pos %>
+    <%= form.select :pos, options_for_select(Entry.pos.keys, {selected: @entry.pos || Entry.new.pos}),
+      class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+
+  </div>
+
+  <div class="my-5">
+    <%= form.label :art %>
+    <%= form.select :art, options_for_select(Entry.arts.keys, {selected: @entry.art || Entry.new.art}),
+          class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :de %>
+    <%= form.text_field :de, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :trxn %>
+    <%= form.text_field :trxn, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :pl %>
+    <%= form.text_field :pl, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :en %>
+    <%= form.text_field :en, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :ru %>
+    <%= form.text_field :ru, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <h2 class='px-3 py-2 text-blue-700'>Beispiele</h2>
+
+  <%= form.fields_for :samples do |sample_subfield| %>
+    <div class="my-5">
+      <%= sample_subfield.label :de %>
+      <%= sample_subfield.text_field :de, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= sample_subfield.label :en %>
+      <%= sample_subfield.text_field :en, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= sample_subfield.label :ru %>
+      <%= sample_subfield.text_field :ru, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  <% end %>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
