@@ -1,0 +1,21 @@
+<nav class='flex sticky top-0 h-16 p-4 text-center justify-between bg-slate-200'>
+  <ul>
+    <li><%= link_to 'Home', root_path %></li>
+  </ul>
+
+  <ul>
+    <% I18n. available_locales.each do |locale| %>
+      <li>
+        <% if I18n.locale == locale %>
+          <%= t(locale, scope: 'locales') %>
+        <% else %>
+          <%= link_to t(locale, scope: 'locales'), url_for(locale: locale) %>
+        <% end %>     
+      </li>
+    <% end %> 
+  </ul>
+
+  <div class='flex'>
+    hello
+  </div>
+</nav>
